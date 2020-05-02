@@ -15,6 +15,81 @@
   bibsource = {dblp computer science bibliography, https://dblp.org}
 }
 
+@article{mikolov,
+  author    = {Tomas Mikolov and
+               Ilya Sutskever and
+               Kai Chen and
+               Greg Corrado and
+               Jeffrey Dean},
+  title     = {Distributed Representations of Words and Phrases and their Compositionality},
+  journal   = {CoRR},
+  volume    = {abs/1310.4546},
+  year      = {2013},
+  url       = {http://arxiv.org/abs/1310.4546},
+  archivePrefix = {arXiv},
+  eprint    = {1310.4546},
+  timestamp = {Mon, 13 Aug 2018 16:47:09 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/MikolovSCCD13.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{vectadd,
+    title = "Skip-Gram $-$ {Z}ipf $+$ Uniform = Vector Additivity",
+    author = "Gittens, Alex  and
+      Achlioptas, Dimitris  and
+      Mahoney, Michael W.",
+    booktitle = "Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2017",
+    address = "Vancouver, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P17-1007",
+    doi = "10.18653/v1/P17-1007",
+    pages = "69--76",
+    abstract = "In recent years word-embedding models have gained great popularity due to their remarkable performance on several tasks, including word analogy questions and caption generation. An unexpected {``}side-effect{''} of such models is that their vectors often exhibit compositionality, i.e., \textit{adding}two word-vectors results in a vector that is only a small angle away from the vector of a word representing the semantic composite of the original words, e.g., {``}man{''} + {``}royal{''} = {``}king{''}. This work provides a theoretical justification for the presence of additive compositionality in word vectors learned using the Skip-Gram model. In particular, it shows that additive compositionality holds in an even stricter sense (small distance rather than small angle) under certain assumptions on the process generating the corpus. As a corollary, it explains the success of vector calculus in solving word analogies. When these assumptions do not hold, this work describes the correct non-linear composition operator. Finally, this work establishes a connection between the Skip-Gram model and the Sufficient Dimensionality Reduction (SDR) framework of Globerson and Tishby: the parameters of SDR models can be obtained from those of Skip-Gram models simply by adding information on symbol frequencies. This shows that Skip-Gram embeddings are optimal in the sense of Globerson and Tishby and, further, implies that the heuristics commonly used to approximately fit Skip-Gram models can be used to fit SDR models.",
+}
+
+@article{elmo,
+  author    = {Matthew E. Peters and
+               Mark Neumann and
+               Mohit Iyyer and
+               Matt Gardner and
+               Christopher Clark and
+               Kenton Lee and
+               Luke Zettlemoyer},
+  title     = {Deep contextualized word representations},
+  journal   = {CoRR},
+  volume    = {abs/1802.05365},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1802.05365},
+  archivePrefix = {arXiv},
+  eprint    = {1802.05365},
+  timestamp = {Mon, 13 Aug 2018 16:48:54 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1802-05365.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{attentionisall,
+  author    = {Ashish Vaswani and
+               Noam Shazeer and
+               Niki Parmar and
+               Jakob Uszkoreit and
+               Llion Jones and
+               Aidan N. Gomez and
+               Lukasz Kaiser and
+               Illia Polosukhin},
+  title     = {Attention Is All You Need},
+  journal   = {CoRR},
+  volume    = {abs/1706.03762},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1706.03762},
+  archivePrefix = {arXiv},
+  eprint    = {1706.03762},
+  timestamp = {Mon, 13 Aug 2018 16:48:37 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/VaswaniSPUJGKP17.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
 @article{bert,
   author    = {Jacob Devlin and
                Ming{-}Wei Chang and
@@ -81,4 +156,10 @@
   urldate   = {2020-03-17},
   location  = {Brno},
   langid    = {english}
+}
+
+@misc{metacentrum,
+	title={MetaCentrum NGI},
+    url={https://www.metacentrum.cz/},
+    journal={MetaCentrum NGI}
 }
