@@ -63,11 +63,15 @@
     keywords    = {NLP, Czech NLP, neural networks, deep neural networks, deep learning, transformers, BERT, ALBERT, text classification, question answering},
     TeXkeywords = {NLP, Czech NLP, neural networks, deep neural networks, deep learning, transformers, BERT, ALBERT, text classification, question answering},
     abstract    = {%
-        This thesis explores a new language model called ALBERT, released by Google Research in 2019. The ALBERT architecture has been very successful in English NLP tasks and this thesis tests its utilization for the Czech language.
+        This thesis explores a new language model called ALBERT, released by Google Research in 2019. The ALBERT architecture has been very successful in English NLP tasks, and this thesis tests its applicability for the Czech language.
+        
+        The work gives an overview of the models leading to ALBERT and their design. Further, the creation process of several Czech ALBERT models is described. Finally, their performance is evaluated, and the models are compared with the current Czech state-of-the-art solutions for text classification and question answering tasks.
+        
+        % This thesis explores a new language model called ALBERT, released by Google Research in 2019. The ALBERT architecture has been very successful in English NLP tasks, and this thesis tests its utilization for the Czech language.
         
         % The work gives an overview of the models leading to ALBERT and their design. Further, it shares the process of creation of several Czech ALBERT models. Finally, it evaluates their performance and compares them to the current Czech state-of-the-art models on text classification and question answering tasks.
 
-        We give an overview of the models leading to ALBERT and their design. Further, we share the creation process of several Czech ALBERT models. Finally, we evaluate their performance and compare them to the current Czech state-of-the-art models on text classification and question answering tasks. 
+        % We give an overview of the models leading to ALBERT and their design. Further, we share the creation process of several Czech ALBERT models. Finally, we evaluate their performance and compare them to the current Czech state-of-the-art models on text classification and question answering tasks. 
 
         % ALBERT models have been very successful in English NLP tasks and this thesis tests the feasibility of the ALBERT architecture for the Czech language. We give an overview of the models leading to ALBERT and their design. Further, we share the process of creation of several Czech ALBERT models. Finally, we evaluate the their performance and compare them to the current Czech state-of-the-art models on text classification and question answering tasks. 
         
@@ -76,11 +80,11 @@
     thanks      = {%
         I would like to thank my supervisor, doc. RNDr. Aleš Horák, Ph.D., for his guidance through the process and helpful remarks, and Ronald Luc for fruitful discussions.
         
-        I am also very grateful to my family who supported me the whole time.
+        I am also very grateful to my family, who supported me for the whole time of my studies.
     
         \vspace{1em}
         {\parindent=0cm
-        Computational resources for this work were supplied by the project "e-Infrastruktura CZ" (e-INFRA LM2018140) provided within the program Projects of Large Research, Development and Innovations Infrastructures.
+        Computational resources for this thesis were supplied by the project "e-Infrastruktura CZ" (e-INFRA LM2018140) provided within the program Projects of Large Research, Development and Innovations Infrastructures.
         }
     },
     bib         = {bib.bib},
@@ -184,7 +188,7 @@ In 2018, researchers from Google released a new language model called BERT~\pare
 %goals
 This thesis aims to pretrain an ALBERT model for the Czech language, evaluate its efficiency in several extrinsic tasks, and compare the results to other current state-of-the-art Czech NLP models. 
 
-There are two BERT models with multilingual support that include the Czech language. These are included in the evaluation as well.
+There are two BERT models with multilingual support that include the Czech language. These are covered in the evaluation, as well.
 
 The first evaluated downstream task is the classification of various attitudes and manipulative techniques in text from the Czech Propaganda dataset~\parencite{propaganda}. 
 
@@ -211,7 +215,7 @@ Even though machine learning approaches to NLP tasks existed, they were often ba
 
 We know that deep learning\parencite{deepNLP} is successful in many areas, like image recognition or various prediction and classification tasks. From this, we can assume that it can be effective in NLP.
 
-In the last few years with the increases in processing power, there have been several breakthroughs that made deep learning for NLP feasible, and even successful.
+In the last few years, with the increases in processing power, there have been several breakthroughs that made deep learning for NLP feasible, and even successful.
 
 \section{Sequence processing}
 Language is intrinsically sequential. A traditional way of processing sequences in deep learning is with the use of recurrent neural networks (RNNs). They process the inputs one by one and propagate an internal state across the whole sequence. They are thus able to deal with sequences of variable length. 
@@ -221,7 +225,7 @@ A big problem with simple RNNs was the vanishing gradient problem. Because of th
 Another issue is the necessity to process the input sequentially. This reduces their parallelizability. 
 
 \section{Word embeddings}
-Today most models tackle the high dimensionality problem by using word embeddings \parencite{mikolov}. Word embeddings are a simple way of decreasing the dictionary dimension. Each word has its own embedding, which is a real vector of relatively low dimension (e.g. 300 instead of 100\,000 for one-hot encoding). The embeddings of all words in the dictionary form a vector space, where words with similar meaning are close together. Even better, if some assumptions are satisfied \parencite{vectadd}, the vectors can be added and subtracted from each other in a meaningful way.  
+Today most models tackle the high-dimensionality problem by using word embeddings \parencite{mikolov}. Word embeddings are a simple way of decreasing the dictionary dimension. Each word has its own embedding, which is a real vector of relatively low dimension (e.g. 300 instead of 100\,000 for one-hot encoding). The embeddings of all words in the dictionary form a vector space, where words with similar meaning are close together. Even better, if some assumptions are satisfied \parencite{vectadd}, the vectors can be added and subtracted from each other in a meaningful way.  
 
 Word embeddings are usually trained unsupervised in advance on a big corpus. The training objective is to predict which words occur in a similar context. The most common methods for training word embeddings are skip-gram and continuous bag-of-words described by Mikolov et al.~\parencite{mikolov}. The resulting weights than can be used as an initialization for the first layer of the final model.
 
@@ -244,10 +248,10 @@ For many NLP tasks, it is crucial to understand the underlying system of the lan
 
 That is where the idea of transfer learning comes from. We can first pretrain a general language model on big and relatively easy-to-create corpora so that it can learn the inner language structure. Then we can fine-tune the model for the specific task. It has been shown that this approach can increase the quality of the resulting model \parencite{transfer1}, \parencite{transfer2}.
 
-Traditionally, language models in NLP were viewed simply from a statistical point of view as a probability distribution over sequences of words/tokens. Well-formed sentences had a higher probability than nonsensical ones. They could be used, for example, for rating possible answers or text generation. The models described below are more powerful. They contain a deeper understanding of the language, and we can use their inner language representation as a start-point for almost any NLP task.
+Traditionally, language models in NLP were viewed simply from a statistical point of view as a probability distribution over sequences of words/tokens. Well-formed sentences had a higher probability than nonsensical ones. They could be used, for example, for rating possible answers or text generation. The models described below are more powerful. They contain a deeper understanding of the language, and we can use their internal language representation as a start-point for almost any NLP task.
 
  \section{ELMo}
-One of the first deep bidirectional word embeddings is ELMo~(Embeddings from Language Models)~\parencite{elmo}. ELMo applies a BiLSTM approach, that means it uses two deep recurrent LSTM networks, one which scans from front to back, and the other which scans from back to front. The resulting embedding is a linear combination of the hidden states of both LSTMs at the time each one scanned the word in question (Figure \ref{fig:contextual_models}). The problem this model has is that it is not designed to use deep architecture to consider the context on both sides at once because both LSTMs see only in one direction and are trained independently. 
+One of the first deep bidirectional word embeddings is ELMo~(Embeddings from Language Models)~\parencite{elmo}. ELMo applies a BiLSTM approach, which means it uses two deep recurrent LSTM networks, one which scans from front to back, and the other which scans from back to front. The resulting embedding is a linear combination of the hidden states of both LSTMs at the time each one scanned the word in question (Figure \ref{fig:contextual_models}). The problem this model has is that it is not designed to use deep architecture to consider the context on both sides at once because both LSTMs see only in one direction and are trained independently. 
 
 \section{Transformers and attention}
 \label{sec:transformer}
@@ -257,7 +261,7 @@ Unlike RNNs, transformers can see the whole input sequence at the same time. How
 
 \subsection{Architecture}
 
-The input of the transformer is a sequence of one-hot encoded words. The first layer of the transformer is a word embedding to a lower dimension, which is initialized randomly. There is no need to pretrain this embedding, it gets trained with the whole model. 
+The input of the transformer is a sequence of one-hot encoded words. The first layer of the transformer is a word embedding to a lower dimension, which is initialized randomly. There is no need to pretrain this embedding; it gets trained with the whole model. 
 The embedded words are then fed into a sequence of encoder layers, which creates a hidden representation of the input sequence at its end. The hidden state is then used in a series of decoder layers, which create the final output sequence.
 
 A great in-depth explanation can be found in a blog post by Jay Alammar called The Illustrated Transformer  \parencite{ilustrtran}.
@@ -268,7 +272,7 @@ Encoder layer consists of two sublayers: multi-head self-attention layer and fee
 
 \subsubsection{Self-attention layer}
 
-The attention mechanism creates three non-contextual representations of each word and uses them to create the output contextual representation. They are called \textit{query}, \textit{key}, and \textit{value}. They are just linear transformations of the input embedding (matrix multiplication). The intuition is that the \textit{queries} and \textit{keys} are used to determine how much is a given context token important for the resulting contextual embedding of another token. The \textit{value} representation of the context token is then multiplied by its importance and compound together with all other weighted \textit{value} representations of context tokens. The \textit{query}, \textit{key}, and \textit{value} representations are separate because each one is used for a different thing and they need to be able to be trained independently. 
+The attention mechanism creates three non-contextual representations of each word and uses them to create the output contextual representation. They are called \textit{query}, \textit{key}, and \textit{value}. They are just linear transformations of the input embedding (matrix multiplication). The intuition is that the \textit{queries} and \textit{keys} are used to determine how much is a given context token important for the resulting contextual embedding of another token. The \textit{value} representation of the context token is then multiplied by its importance and compound together with all other weighted \textit{value} representations of context tokens. The \textit{query}, \textit{key}, and \textit{value} representations are separate because each one is used for a different thing, and they need to be able to be trained independently. 
 
 More rigorously, when we want to know how much is the word $b$ important as the context for the word $a$, we use the \textit{query}  $q_a$ of the word $a$ and the \textit{key} $k_b$ of the word $b$. We then calculate a dot product $q_a \cdot k_b$ and get a single number called score. The score is then normalized for nicer gradients and passed through softmax. We will call this number $s_{a,b}$.
 
@@ -276,16 +280,16 @@ To get the contextual embedding $z_a$ of word $a$, we use the \textit{value} emb
 $$
 z_a = \sum_{w  \in  \text{seq}} s_{a,w} \cdot v_w
 $$
-where $z_a$ is the contextual embedding of word $a$ and $v_w$ is the \textit{value} embedding of word $w$. Figure \ref{fig:selfatt} illustrates this process.
+where $z_a$ is the contextual embedding of word $a$, and $v_w$ is the \textit{value} embedding of word $w$. Figure \ref{fig:selfatt} illustrates this process.
 
 Generally, the word most important for its context is the word itself, so $z_a$ is mostly influenced by $v_a$. 
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 %   \begin{center}
     \includegraphics[width=\linewidth]{img/self-attention-output-altered.png}
 %   \end{center}
 %   \vspace{-0.5cm}
-  \caption[Principle of self-attention]{Principle of self-attention. The creation of contextual embedding $z_1$ for the input word \textit{thinking} in the context \textit{thinking machines}. Similar procedure with substitution $q_1 \rightarrow q_2$ in the calculation of Score is done to create the contextual embedding $z_2$ of the word \textit{machines}.  Source \parencite{ilustrtran}, altered. }
+  \caption[Principle of self-attention]{Principle of self-attention. The creation of contextual embedding $z_1$ for the input word \textit{thinking} in the context \textit{thinking machines}. A similar procedure with substitution $q_1 \rightarrow q_2$ in the Score calculation is done to create the contextual embedding $z_2$ of the word \textit{machines}.  Source \parencite{ilustrtran}, altered. }
   \label{fig:selfatt}
 \end{figure}
 
@@ -330,7 +334,7 @@ At the time of release, the model achieved state-of-the-art results in many NLP 
 
 \subsection{Architecture}
 \label{sec:bert_arch}
-The BERT architecture consists mainly from the encoder part of the transformer. We will use these letters to annotate its parameters (Figure \ref{fig:bert}). The mentioned sizes correspond to the BERT base model.
+The BERT architecture consists mainly of the encoder part of the transformer. We will use these letters to annotate the parameters of BERT (Figure \ref{fig:bert}). The mentioned sizes correspond to the BERT base model.
 \begin{itemize}
 \itemsep0em 
 \item $V$ -- vocabulary size (30 000)
@@ -366,7 +370,7 @@ The first input token is always \texttt{[CLS]}. Because of the contextuality of 
 
 It is often important to know in which part of the sequence a particular token is. To do this, BERT uses position embeddings as a parallel input to the tokens.
 
-Some NLP tasks such as question answering require the model to be able to accept multiple sequences as an input (<Question, Paragraph>). BERT architecture solves this in two ways. The first is to use a special \texttt{[SEP]} token to separate the sequences. The second is segment embedding. The segment embedding is a parallel input to the tokens, and it shows into which sequence the token belongs. This embedding is learned during the training. 
+Some NLP tasks such as question answering require the model to be able to accept multiple sequences as an input (<Question, Paragraph>). BERT architecture solves this in two ways. The first is to use a special \texttt{[SEP]} token to separate the sequences. The second is the segment embedding. The segment embedding is a parallel input to the tokens, and it shows into which sequence the token belongs. This embedding is learned during the training. 
 
 All three embeddings are summed together (input embedding) and are fed to the encoder layers. Each resulting vector is still just a function of one token (and its position and segment); it does not use its context at this point.
 
@@ -375,7 +379,7 @@ The tensor dimension of the compound input embedding is $(W, H)$.
 \subsubsection{Encoder layers}
 The encoder layers each perform multi-head attention on each token the same way as in the transformer\footnote{See Section \ref{sec:encoder} for a detailed description of the encoder layer.}. This process is what creates the contextual embeddings. There are $L$ encoder layers, each one with $A$ heads which share $H$ neurons together (each head has $\frac{H}{A}$ neurons (the dimension of querry, key and value) -- in the case of BERT$_\text{base}$ it is 64). The feed-forward part of each attention layer has the size $I$. 
 
-As in the transformer, the same weights are applied on all the input embeddings.
+As in the transformer, the same weights are applied to all the input embeddings.
 
 The output from the encoder layers is a tensor of dimensions  $(W, H)$.
 
@@ -423,9 +427,9 @@ tests [MASK] primality .}}
 
 
 \subsection{Fine-tuning}
-Fine-tuning is the process of adapting the pretrained BERT model to a different task then it was pretrained on. 
+Fine-tuning is the process of adapting the pretrained BERT model to a different task, then it was pretrained on. 
 
-The first step is modifying the task's input, so it fits the BERT inputs and somewhat resembles the pretraining tasks. This is possible for many tasks, because BERT supports multiple input sequences. Because of its bidirectional nature and fixed width, BERT is not suitable for text generation tasks (whereas GPT\parencite{gpt} is).
+The first step is modifying the task's input, so it fits the BERT inputs and somewhat resembles the pretraining tasks. This is possible for many tasks because BERT supports multiple input sequences. Because of its bidirectional nature and fixed width, BERT is not suitable for text generation tasks (whereas GPT\parencite{gpt} is).
 
 The second step is adding additional layer(s) on top of the core (on top of the output embeddings) that are able to answer the task. This usually means adding a classification layer on the output embedding of the first token (\texttt{[CLS]}) if we want to classify the whole input (entailment, sentiment analysis). Or using all the output token embeddings in other ways specific to the token level task (sequence tagging, question answering). An example of modification for question answering is described in Section \ref{sec:qaarch}
 
@@ -436,11 +440,11 @@ The fine-tuning process is much faster than the pretraining.  Devlin et al. \par
 Examples of possible downstream tasks include all GLUE tasks \parencite{glue}, text classification, sequence tagging, paraphrasing, entailment, question answering, \dots
 
 \subsection{Achievements}
-At the time BERT was released (autumn 2018) it achieved these results.
+At the time BERT was released (autumn 2018), it achieved these results.
 
 \textbf{GLUE}: Fine-tuned BERT$_\text{base}$ models surpassed all previous models on all the GLUE \parencite{glue} tasks except for the problematic WNLI \parencite[Table 1]{bert}. The performance of BERT$_\text{large}$ was even better.
 
-\textbf{SQuAD} \parencite{squad}: An ensemble model of fine-tuned BERT$_\text{large}$ achieved best results for SQuAD v1 \parencite[Table 2]{bert} and single  fine-tuned BERT$_\text{large}$ model exceeded all previous models (but not human performance) at SQuAD v2\parencite[Table 3]{bert}. 
+\textbf{SQuAD} \parencite{squad}: An ensemble model of fine-tuned BERT$_\text{large}$ achieved the best results for SQuAD v1 \parencite[Table 2]{bert} and single fine-tuned BERT$_\text{large}$ model exceeded all previous models (but not human performance) at SQuAD v2\parencite[Table 3]{bert}. 
 
 \section{ALBERT}
 In 2019 Lan et al. from Google released a leaner version of BERT called ALBERT~\parencite{albert}, which has much fewer parameters and achieves better performance. Because ALBERT is faster than BERT, it can be trained for a longer time with a bigger model on a bigger corpus. They claim ALBERT is 18 times smaller and achieves similar performance as BERT in 3/5 of the training time.
@@ -450,7 +454,7 @@ In 2019 Lan et al. from Google released a leaner version of BERT called ALBERT~\
 Even though most of the model is the same as BERT (see Section \ref{sec:bert_arch} for the description of BERT), Lan et al. made three main improvements to ALBERT.
 
 \subsubsection{Factorized embedding parameterization}
-ALBERT has an additional token embedding layer between the inputs and the encoder layers. In BERT, the input word embedding size is directly tied to the size of the hidden layer $H$. Increasing the size of the hidden layer improves the model performance, but also adds many weights, because the dictionary is large. ALBERT adds an additional parameter $E$ -- size of the input embedding. By uncoupling  the the size of the hidden layer from the embedding size, they allowed increased hidden size $H$ without adding that many weights to the model. The recommended size of $E$ is 128.
+ALBERT has an additional token embedding layer between the inputs and the encoder layers. In BERT, the input word embedding size is directly tied to the size of the hidden layer $H$. Increasing the size of the hidden layer improves the model performance, but also adds many weights, because the dictionary is large. ALBERT adds an additional parameter $E$ -- size of the input embedding. By uncoupling the size of the hidden layer from the embedding size, they allowed increased hidden size $H$ without adding that many weights to the model. The recommended size of $E$ is 128.
 
 \noindent\vbox{\parindent=0pt
  \setlength\abovedisplayskip{0pt}
@@ -482,7 +486,7 @@ The original BERT uses separate weights for each encoder layer. Previous works h
 
 The first benefit of parameter sharing is the models have fewer weights (even though they are not faster). This allows for bigger batch sizes during training, which is important \footnote{The importance of batch size is explored in Section \ref{sec:pretr_eval}.}.
 
-When examining how the contextualized embeddings changed in each encoder layer, Lan et al. found out that in BERT the embeddings change a lot and unevenly. Cross-layer parameter sharing causes the embedding change in each layer to be smaller and more consistent. Figure \ref{fig:crosslayer-stability} shows this comparison.  
+When examining how the contextualized embeddings changed in each encoder layer, Lan et al. found that in BERT, the embeddings change a lot and unevenly. Cross-layer parameter sharing causes the embedding change in each layer to be smaller and more consistent. Figure \ref{fig:crosslayer-stability} shows this comparison.  
 
 \begin{figure}[h]
   \begin{center}
@@ -511,9 +515,9 @@ The impact on performance (Table \ref{tab:crosslayer-performance}) is not that s
 \subsubsection{Inter-sentence coherence loss}
 The third improvement is changing one of the pretraining tasks. The masked language modeling (MLM) stays unchanged, but the next sentence prediction (NSP, see Section \ref{sec:nsp}) task is replaced by the sentence order prediction (SOP) task.
 
-A negative example of NSP is created by taking the next sentence from a different document than the first one. This sentence has usually a different topic, so it is easier for the model to detect it.
+A negative example of NSP is created by taking the next sentence from a different document than the first one. This sentence usually has a different topic, so it is easier for the model to detect it.
 
-The SOP task is based on inter-sentence coherence, not the topic. Positive examples are created the same way as in the NSP (two consecutive segments from the same document). Negative examples are also created by taking two consecutive segments from the same document, but their order is flipped. This way the topic stays the same in both cases.
+The SOP task is based on inter-sentence coherence, not the topic. Positive examples are created the same way as in the NSP (two consecutive segments from the same document). Negative examples are also created by taking two consecutive segments from the same document, but their order is flipped. This way, the topic stays the same in both cases.
 
 Table \ref{tab:sop-vs-nsp} shows the performance impact of this change. We can also see that the model pretrained with NSP is unable to predict the SOP, probably because it observes the easier topic signal. Model pretrained with SOP is able to predict NSP reasonably well (NSP also contains the coherence discrepancy in negative examples)
 
@@ -540,7 +544,7 @@ The algorithm SentencePiece uses for splitting words into tokens is not greedy. 
 
 \subsection{Achievements}
 
-Similarly to BERT, at the time of release (autumn 2019) ALBERT achieved state-of-the-art result on GLUE \parencite{glue} and SQuAD \parencite{squad} (\parencite[Tables 9 and 10]{albert}).
+Similarly to BERT, at the time of release (autumn 2019), ALBERT achieved state-of-the-art results on GLUE \parencite{glue} and SQuAD \parencite{squad} (\parencite[Tables 9 and 10]{albert}).
 
 In addition, ALBERT improved the best performance for the RACE dataset \parencite{race}.
 
@@ -549,7 +553,7 @@ In addition, ALBERT improved the best performance for the RACE dataset \parencit
 % ####################################
 
 \chapter{Czech ALBERT}
-This chapter contains the description and details the creation of Czech language models based on the ALBERT architecture. The resulting models are evaluated in Chapter \ref{sec:eval}.
+This chapter details the creation of Czech language models based on the ALBERT architecture. The resulting models are evaluated in Chapter \ref{sec:eval}.
 
 \section{Other language models suitable for Czech}
 \label{chap:multimodels}
@@ -559,19 +563,19 @@ There are two published transformer-based language models that support the Czech
 Multilingual BERT was released by Google along with the original English BERT models \parencite{multibert}. It supports 104 languages and has the same parameters as the BERT base model (except dictionary size). Even though there are not many full Czech words in its vocabulary, the WordPiece tokenizer enables the model to split words into multiple tokens.
 
 \subsection{Slavic BERT}
-Slavic BERT is an adapted version of the Multilingual BERT developed by the Moscow Institute of Physics and Technology \parencite{slavicbert}. It is specialized for four languages (Czech, Russian, Bulgarian and Polish). It has bigger vocabulary overlap with the Czech language than the Multilingual BERT.
+Slavic BERT is an adapted version of the Multilingual BERT developed by the Moscow Institute of Physics and Technology \parencite{slavicbert}. It is specialized for four languages (Czech, Russian, Bulgarian and Polish). It has a bigger vocabulary overlap with the Czech language than the Multilingual BERT.
 
 \vspace{1em}
 
 {\parindent=0cm
-For comparison of vocabulary overlap see tables \ref{tab:vocab-nov-compare}, \ref{tab:vocab-prop-compare}, and \ref{tab:vocab-sqad-compare}
+For comparison of vocabulary overlap, see tables \ref{tab:vocab-nov-compare}, \ref{tab:vocab-prop-compare}, and \ref{tab:vocab-sqad-compare}
 }
 
 
 \section{Source code and repository}
 Scripts and libraries I used for this thesis are in a GitHub repository \url{https://github.com/zepzep/csalbert} \parencite{thesis_repo}.
 
-It contains a fork of the ALBERT repository released by Google \parencite{albert_repo}, the scripts for corpus preprocessing, tokenizing, model creation and ALBERT pretraining and fine-tuning.
+It contains a fork of the ALBERT repository released by Google \parencite{albert_repo}, the scripts for corpus preprocessing, tokenizing, model creation, and ALBERT pretraining and fine-tuning.
 
 A minimal working example of fine-tuning of a Czech ALBERT model on a classification task using Keras is included as well.
 
@@ -619,7 +623,7 @@ A SentencePiece model is needed for the text tokenization. It can be trained fro
 
 ALBERT needs some special tokens that do not appear in normal text (like \texttt{[CLS]} and \texttt{[SEP]}). We need to specify this to the SentencePiece trainer, as well as user-defined standalone characters, that are always tokenized separately (like parenthesis or quotation marks).
 
-The dictionary size I chose is 30\,000. This is the same size English ALBERT used. Czech language would probably benefit from bigger dictionary than English, because it is morphologically more diverse, but because of performance reasons, I decided to let it be the same size.
+The vocabulary size I chose is 30\,000. This is the same size English ALBERT used. The Czech models would probably benefit from a bigger vocabulary than English models because Czech is morphologically more diverse than English. However, because of performance reasons, I decided to let it be the same size.
 
 The script I used to train the SentencePiece model is \newline
 \href{https://github.com/ZepZep/csalbert/blob/master/corpus/mk_sentencepiece.py}{\texttt{csalbert/corpus/mk\_sentencepiece.py}}.
@@ -632,7 +636,7 @@ In order to process the data more quickly, I split the corpus and ran the script
 
 Figure \ref{fig:pretraining-data} shows one training example. \texttt{input\_ids} are the token ids of the input paragraph. Its length is always the same as the model width $W$. \texttt{tokens} are just translated \texttt{input\_ids} for illustration; they are not saved to the training file.
 
-\texttt{input\_mask} is used in sequences shorter than the model width, it denotes where the padding starts. \texttt{segment\_ids} are used for segment embeddings. \texttt{token\_boundary} shows which tokens are at the word beginning. \texttt{masked\_lm\_ids} and \texttt{masked\_lm\_weights}, are used in the MLM task.\texttt{next\_sentence\_labels} mark whether the two input segments are in the correct order for the SOP task.
+\texttt{input\_mask} is used in sequences shorter than the model width; it denotes where the padding starts. \texttt{segment\_ids} are used for segment embeddings. \texttt{token\_boundary} shows which tokens are at the word beginning. \texttt{masked\_lm\_ids} and \texttt{masked\_lm\_weights}, are used in the MLM task.\texttt{next\_sentence\_labels} mark whether the two input segments are in the correct order for the SOP task.
 
 
 \begin{figure}[h]
@@ -651,7 +655,7 @@ Figure \ref{fig:pretraining-data} shows one training example. \texttt{input\_ids
 The base pretraining script is located in
 \href{https://github.com/ZepZep/csalbert/blob/master/albert/run_pretraining.py} {\texttt{csalbert/albert/run\_\linebreak{}pretraining.py}}. The script is able to both train the model and evaluate it on the pretraining tasks, but not at the same time.
 
-To make it easier, I created a console application (\href{https://github.com/ZepZep/csalbert/blob/master/pretraining/autobert.py}{\texttt{autobert}}) which runs two instances of the script at the same time (one for pretraining, one for evaluation) and presents the output from both in a readable format. It uses yaml config files for model parameter definition and accepts arguments like path to training dataset or number of training steps to train for.
+To make it easier, I created a console application (\href{https://github.com/ZepZep/csalbert/blob/master/pretraining/autobert.py}{\texttt{autobert}}), which runs two instances of the script at the same time (one for pretraining, one for evaluation) and presents the output from both in a readable format. It uses yaml config files for model parameter definition and accepts arguments like path to training dataset or number of training steps to train for.
 
 The evaluation results are logged using TensorBoard \parencite{tensorboard} log files. 
 To view them, we need to start a local TensorBoard server and connect to it with a web browser. Figure \ref{fig:tb-vis} shows some examples of visualizations that TensorBoard offers. They are updated in real-time during the training, but they can also be viewed later.
@@ -665,27 +669,27 @@ To view them, we need to start a local TensorBoard server and connect to it with
     }
 \end{figure}
 
-The default English tokenization is not suitable for the Czech language so I had to alter it to comply with the preprocessing described in Section \ref{sec:text_preproc}. 
+The default English tokenization is not suitable for the Czech language, so I had to alter it to comply with the preprocessing described in Section \ref{sec:text_preproc}. 
 
 \subsubsection{MetaCentrum}
 Because pretraining needs a lot of computing power, I used MetaCentrum servers. MetaCentrum is a Czech national grid infrastructure which grants academic and research organizations and individuals access to computing and data storage \parencite{metacentrum}. 
 MetaCentrum offers machines from many connected clusters with different capabilities.
 
-Pretraining of big neural networks requires powerful GPUs. The \texttt{adan}\footnote{\url{https://wiki.metacentrum.cz/wiki/Cluster_Adan}} cluster offers machines with 2 nVidia Tesla T4 16GB GPUs each. I used this cluster for the pretraining and finetuning.
+Pretraining of big neural networks requires powerful GPUs. The \texttt{adan}\footnote{\url{https://wiki.metacentrum.cz/wiki/Cluster_Adan}} cluster offers machines with 2 nVidia Tesla T4 16GB GPUs each. I used this cluster for the pretraining and fine-tuning.
 
 \vspace{1em}
 {\parindent=0cm
-ALBERT is written for TensorFlow\footnote{\url{https://www.tensorflow.org/}} 1.15.2. It is not trivial to install an exact version of TensorFlow for GPUs with all of its dependencies without root access. MetaCentrum's module system supports several TensorFlow versions, but it is not perfect and I was not able to get everything working. 
+ALBERT is written for TensorFlow\footnote{\url{https://www.tensorflow.org/}} 1.15.2. It is not trivial to install an exact version of TensorFlow for GPUs with all of its dependencies without root access. MetaCentrum's module system supports several TensorFlow versions, but it is not perfect, and I was not able to get everything working. 
 }
 
 The suggested course of action, which I opted for, is to use a virtualized TensorFlow Docker container. I created a container based on \texttt{tensorflow/tensorflow:1.15.2-gpu-py3-jupyter}\footnote{
 \href{https://hub.docker.com/layers/tensorflow/tensorflow/1.15.2-gpu-py3-jupyter/images/sha256-2c2ddc9780724ee528757f44beb16dac302a09ee7eb4e333b7dd85404597fdd9}
     {\texttt{https://hub.docker.com/r/tensorflow/tensorflow/tags}}
-}, built it and installed all required packages using Docker\footnote{\url{https://www.docker.com/}} and Singularity\footnote{\url{https://sylabs.io/singularity/}}.
+}, built it, and installed all required packages using Docker\footnote{\url{https://www.docker.com/}} and Singularity\footnote{\url{https://sylabs.io/singularity/}}.
 
 MetaCentrum machines also use a hierarchy of storage. Long-term user storage runs on different machines and is slow. The script \href{https://github.com/ZepZep/csalbert/blob/master/pretraining/pretrain.sh}{\texttt{csalbert/pretraining/pretrain.sh}} copies all needed files to a fast local SSD, starts the pretraining in the virtualized container, and after it is finished, the script copies the trained model back to long-term storage. It creates a local TensorBoard server as well. 
 
-I used the GNU Screen\footnote{\url{https://www.gnu.org/software/screen/}} program to allow me to troubleshoot. This way I could connect to the machine that was currently training the model via ssh and inspect the running processes. Forwarding the TensorBoard port also allowed me to view the training progress and current performance.
+I used the GNU Screen\footnote{\url{https://www.gnu.org/software/screen/}} program to allow me to troubleshoot. This way, I could connect to the machine that was currently training the model via ssh and inspect the running processes. Forwarding the TensorBoard port also allowed me to view the training progress and current performance.
 
 The last step is to create and queue the jobs so that MetaCentrum can schedule and execute them. Because there is a 24-hour time limit on each job, I needed to split them into smaller pieces. The pretraining dataset is already split because of processing parallelism. I created one job per dataset piece. It takes approximately 3 hours to train 1 epoch over one dataset piece for the smaller models, 6 hours for the large ones (see Table \ref{tab:pretrain-speed} for speed comparison). The jobs were created with dependencies on one another so they would be executed linearly. The implementation is in the script \href{https://github.com/ZepZep/csalbert/blob/master/pretraining/enqueue.sh}{\texttt{csalbert/pretraining/enqueue.sh}}.
 
@@ -696,7 +700,7 @@ The last step is to create and queue the jobs so that MetaCentrum can schedule a
 \label{sec:adapting-finetuning}
 Fine-tuning the pretrained model is much faster than the pretraining itself. I was able to use my home computer with GTX 1060 6GB as well as MetaCentrum machines. One epoch on the Propaganda dataset takes 3\,--\,8 minutes (single task), and one epoch on the SQAD database takes 4\,--\,9 minutes.
 
-For easier visualization and faster design process of the fine-tuning tasks I used Jupyter notebooks\footnote{\url{https://jupyter.org/}}.
+For easier visualization and faster design process of the fine-tuning tasks, I used Jupyter notebooks\footnote{\url{https://jupyter.org/}}.
 
 % I include the bare scripts in the repository as well.
 
@@ -705,10 +709,10 @@ Even though ALBERT repository offers a script for text classification (as well a
 
 Luckily there is a python module called \texttt{bert-for-tf2}\footnote{\url{https://github.com/kpe/bert-for-tf2/}} which enables fine-tuning of transformer models like BERT, adapter-BERT and ALBERT in TensorFlow version 2. TensorFlow 2 has better integration with the high-level neural network framework Keras\footnote{\url{https://keras.io/}}, which allows an easier and faster neural network design process. 
 
-The Jupyter notebook \href{https://github.com/ZepZep/csalbert/blob/master/novinky/novinky_finetune.ipynb}{\texttt{csbase/novinky/novinky\_finetune.ipynb}} was used for creation, fine-tuning and evaluation of novinky.cz models. The \href{https://github.com/ZepZep/csalbert/blob/master/propaganda/propaganda_finetune.ipynb}{\texttt{csbase/propaganda/propaganda\_finetune.ipynb}} notebook was used for Propaganda.
+The Jupyter notebook \href{https://github.com/ZepZep/csalbert/blob/master/novinky/novinky_finetune.ipynb}{\texttt{csbase/novinky/novinky\_finetune.ipynb}} was used for creation, fine-tuning, and evaluation of novinky.cz models. The \href{https://github.com/ZepZep/csalbert/blob/master/propaganda/propaganda_finetune.ipynb}{\texttt{csbase/propaganda/propaganda\_finetune.ipynb}} notebook was used for Propaganda.
 
 \subsubsection{Question answering}
-Preprocessing and postprocessing for question answering is much more complicated than for text classification. The ALBERT repository provides the script \href{https://github.com/ZepZep/csalbert/blob/master/albert/run_squad_v2.py}{\texttt{csalbert/albert/run\_squad\_v2.py}}, which deals with many of the problems. It is however designed for the English SQuAD dataset so I had to transform the data from the Czech SQAD dataset and adapt the script.
+Preprocessing and postprocessing for question answering are much more complicated than for text classification. The ALBERT repository provides the script \href{https://github.com/ZepZep/csalbert/blob/master/albert/run_squad_v2.py}{\texttt{csalbert/albert/run\_squad\_v2.py}}, which deals with many of the problems. It is however, designed for the English SQuAD dataset, so I had to transform the data from the Czech SQAD dataset and adapt the script.
 
 \vspace{1em}
 {\parindent=0pt
@@ -740,7 +744,7 @@ To enable other people to fine-tune and use Czech ALBERT models, there is a mini
 \href{https://github.com/ZepZep/csalbert/blob/master/classification/classification.ipynb}{\texttt{csalbert/classification/classification.ipynb}}.
 
 \subsubsection{Multilingual models}
-To be able to compare the Czech ALBERT models to the Multilingual models, I needed to run similar experiments on them as well. The \texttt{bert-for-tf2} module is able to work with both BERT and ALBERT so, for the text classification task, the adaptations were straightforward. However because the BERT models are much bigger, I had to fine-tune them on MetaCentrum.
+To be able to compare the Czech ALBERT models to the Multilingual models, I needed to run similar experiments on them as well. The \texttt{bert-for-tf2} module is able to work with both BERT and ALBERT, so the adaptations for the text classification tasks were straightforward. However, because the BERT models are much bigger, I had to fine-tune them on MetaCentrum.
 
 The adaptation for question answering was more complex. I used the original BERT repository\footnote{\url{https://github.com/google-research/bert}} and the script \href{https://github.com/google-research/bert/blob/master/run_squad.py}{run\_squad.py}. I had to alter the source code in a similar way as the ALBERT source code to fix the English tokenization. The execution scripts for fine-tuning and evaluation are \href{https://github.com/ZepZep/csalbert/blob/master/sqad/bert_train_sqad.sh}
     {\texttt{csalbert/sqad/bert\_predict\_sqad.sh}} and 
@@ -778,15 +782,15 @@ The training process and model parameters have evolved over the course of this p
 \end{tabular}
 }
 \caption[Model parameters, size and speed]
-{Model parameters, size, pretraining parameters and speed.}
+{Model parameters, size, pretraining parameters, and speed.}
 \label{tab:pretrain-speed}
 \end{table}
 
 \footnotetext{training examples of the English BERT, the actual are unknown.} 
 
-Even though the \textit{cslarge3} is twice as wide as \textit{csbase3}, it has almost the same amount of weights (because the encoder layers apply same transformations to all tokens). However, the training speed is much slower, and batch sizes can be only half as big.
+Even though the \textit{cslarge3} is twice as wide as \textit{csbase3}, it has almost the same amount of weights (because the encoder layers apply the same transformations to all tokens). However, the training speed is much slower, and batch sizes can be only half as big.
 
-The \textit{csbase4} model has more attention heads (12 vs. 8) and a bigger hidden size (768 vs. 256). It needs more calculations per training example, so it is slower. Despite the bigger weight count, \textit{csbase4} can use the same batch size as \textit{csbas3}, because the weights are in the GPU memory only once, and the width of the model is the same.
+The \textit{csbase4} model has more attention heads (12 vs. 8) and bigger hidden size (768 vs. 256). It needs more calculations per training example, so it is slower. Despite the bigger weight count, \textit{csbase4} can use the same batch size as \textit{csbas3}, because the weights are in the GPU memory only once, and the width of the model is the same.
 
 
 Full config files for the models are in 
@@ -805,13 +809,13 @@ Full config files for the models are in
 \label{sec:eval}
 \section{Pretraining evaluation}
 \label{sec:pretr_eval}
-For comparison of the quality of the Czech ALBERT models I used the multilingual models mentioned in section \ref{chap:multimodels}. I also used the base model of English ALBERT released by Google.
+For comparison of the quality of the Czech ALBERT models, I used the multilingual models mentioned in section \ref{chap:multimodels}. I also used the base model of English ALBERT released by Google.
 Table \ref{tab:pretr-compare} shows the comparison of performance on pretraining tasks 
 \footnote{See Sections~\ref{sec:bert_pretraining} and~\ref{sec:albert_pretraining} for details about the pretraining tasks.}.
 
 Masked language modeling is split into two parts. \textit{MLM word} always masks and predicts the whole word, even if it is split into multiple pieces during tokenization. \textit{MLM tok} masks and predicts single tokens. \textit{MLM tok} is easier because the model can use the rest of the word as a context.
 
-Because BERT uses different second pretraining task than ALBERT (next sentence prediction (NSP) vs. sentence order prediction (SOP)) we cannot directly compare the models in these tasks. The NSP task is easier because the two sentences vary in the theme, SOP requires more semantic comprehension. 
+Because BERT uses a different second pretraining task than ALBERT (next sentence prediction (NSP) vs. sentence order prediction (SOP)), we cannot directly compare the models in these tasks. The NSP task is easier because the two sentences vary in their theme; SOP requires semantic comprehension. 
 
 The English ALBERT was never pretrained on Czech text; it is here just as a baseline.
 
@@ -834,13 +838,13 @@ The English ALBERT was never pretrained on Czech text; it is here just as a base
 We can see that the Czech ALBERT models perform worse on the MLM task. Possible reasons for this might be:
 %I think it is because of the following reasons:
 
-Both BERT models and English ALBERT were pretrained with much more computing power than the Czech ALBERT models. I had to work with smaller models, and despite that, I estimate that using the current setup on MetaCentrum it would take 5 months to pretrain one model on similar amount of data as English ALBERT. Google used a dedicated TPU cloud with 64 to 512 TPUs (depending on the model size), each with 16 GB of RAM. I was able to utilize only single machine and one GPU at a time.
+Both BERT models and English ALBERT were pretrained with much more computing power than the Czech ALBERT models. I had to work with smaller models, and despite that, I estimate that using the current setup on MetaCentrum, it would take 5 months to pretrain one model on a similar amount of data as English ALBERT. Google used a dedicated TPU cloud with 64 to 512 TPUs (depending on the model size), each with 16 GB of RAM. I was able to utilize only a single machine and one GPU at a time.
 
-Another contributing factor is smaller batch size. Because of memory constraints and lack of parallelism I could only use maximum batch size of 32. English ALBERT$_{\text{base}}$ used batch size of 4096 (64 TPUs in parallel each with batch size 64). It has been shown in \parencite[page 27, Figure 11]{batch-size} that if we have enough training data (which we do), bigger batch size leads to better performance (even when the number of total training examples the network sees is the same).
+Another contributing factor is smaller batch size. Because of memory constraints and lack of parallelism, I could only use a maximum batch size of 32. English ALBERT$_{\text{base}}$ used batch size of 4096 (64 TPUs in parallel each with batch size 64). It has been shown in \parencite[page 27, Figure 11]{batch-size} that if we have enough training data (which we do), bigger batch size leads to better performance (even when the number of total training examples the network sees is the same).
 
 To utilize multiple machines/GPUs, a total rewrite of the pretraining process would be needed. The code Google released is meant for a TPU cloud (which is one of their services) and offers a rudimentary support for single GPU or multiple CPUs. Using CPUs is slower and less efficient than using a single GPU. Because this architecture is very new (autumn 2019), at the time I started working on this project, there were no multi-GPU implementations for ALBERT pretraining available.
 
-Because each model uses a different dictionary, the inputs are tokenized differently. When a word does not appear in the dictionary, it has to be split into multiple tokens. This is most apparent in the case of English ALBERT, where all accented Czech characters (like áěš) are split each into separate token. This means that the model input can fit fewer sentences, and the \textit{MLM tok} task shifts from predicting word in a sentence towards predicting letter or syllable in a word. That is probably why the BERT models are much better at \textit{MLM tok} than \textit{MLM word}.  
+Because each model uses a different dictionary, the inputs are tokenized differently. When a word does not appear in the dictionary, it has to be split into multiple tokens. This is most apparent in the case of English ALBERT, where all accented Czech characters (like áěš) are split each into a separate token. This means that the model input can fit fewer sentences, and the \textit{MLM tok} task shifts from predicting word in a sentence towards predicting letter or syllable in a word. That is probably why the BERT models are much better at \textit{MLM tok} than \textit{MLM word}.  
 
 % copying
 
@@ -856,7 +860,7 @@ I chose two domains for the testing -- text classification and question answerin
 \subsection{Model architecture}
 In text classification tasks, the model predicts into which class the input text belongs. There may be only two classes (yes/no, binary classification), or there may be more classes (multi-class classification).
 
-Binary classification in neural networks is usually done by having a single neuron with a sigmoid activation in the last layer. The network is then trained using the binary cross entropy loss function. The first class corresponds to the output being close to 0, the second class close to 1.
+Binary classification in neural networks is usually done by having a single neuron with a sigmoid activation in the last layer. The network is then trained using the binary cross-entropy loss function. The first class corresponds to the output being close to 0, the second class close to 1.
 
 For multi-class classification, we one-hot-encode the class labels and have one neuron for each class in the final layer. The neurons use the softmax activation function. The neuron with the maximum activation value corresponds to the chosen class.
 
@@ -869,7 +873,7 @@ The input for the classification layer is an internal state of the model. There 
 
 \begin{figure}[h]
     \caption[ALBERT classification model -- basic]{
-        ALBERT modification for classification. The last layer is a 8-class classifier for the Location task in Propaganda dataset. The model is based on \textit{csbase4}.
+        ALBERT modification for classification. The last layer is an 8-class classifier for the Location task in the Propaganda dataset. The model is based on \textit{csbase4}.
     }
     \label{fig:class-basic}
     \centering
@@ -893,7 +897,7 @@ I also tried to use the output embeddings of all tokens, but the output embeddin
 
 
 When performing multiple classification tasks on the same text, we can branch off the hidden state into multiple classification layers in the same model. This allows the training of multiple tasks at once.
-However, it also leads to suboptimal performance because each task starts to overfit at a different time and it is not possible to stop training only one of them. An example of such multi classifier is shown in Figure \ref{fig:model-class-multi}.
+However, it also leads to suboptimal performance because each task starts to overfit at a different time, and it is not possible to stop training only one of them. An example of such multi classifier is shown in Figure \ref{fig:model-class-multi}.
 
 \begin{figure}[hbt]
     \caption[ALBERT classification model -- multiple tasks at once]{
@@ -908,7 +912,7 @@ However, it also leads to suboptimal performance because each task starts to ove
 \end{figure}
 
 {\parindent=0cm
-For implementation details of text classification see Section \ref{sec:adapting-finetuning}.
+For implementation details of the text classification models, see Section \ref{sec:adapting-finetuning}.
 }
 
 \subsection{Novinky.cz dataset}
@@ -942,7 +946,7 @@ Table \ref{tab:vocab-nov-compare} shows the vocabulary coverage of various model
 \label{tab:vocab-nov-compare}
 \end{table} %tab:vocab-nov-compare
 
-For the classification task, I chose the prediction of article category based on the article description. The article description is the first paragraph of the article, which outlines it's contents.
+For the classification task, I chose the prediction of article category based on the article description. The article description is the first paragraph of the article, which outlines its contents.
 
 
 \newpage
@@ -1006,7 +1010,7 @@ The biggest advantage the Czech ALBERT model has in comparison to the multilingu
 
 
 \subsection{Unbalanced classes}
-The Novinky.cz dataset was created artificially as an ideal dataset. It contains enough data, and its classes are balanced, meaning there are the same number of examples in each class. This is very important for the training of neural networks, because when the classes are unbalanced, the backpropagation process often leads the network into a worse local optimum \parencite{unbalanced}.
+The Novinky.cz dataset was created artificially as an ideal dataset. It contains enough data, and its classes are balanced, meaning there is the same number of examples in each class. This is very important for the training of neural networks because when the classes are unbalanced, the backpropagation process often leads the network into a worse local optimum \parencite{unbalanced}.
 
 The Propaganda dataset is a real-world dataset. Some tasks have up to ten times as many examples in one class than other class. We cannot easily create new data to balance classes, but there are a few ways to remedy this.
 
@@ -1016,7 +1020,7 @@ The second way is to clone the examples from minority classes. This is better be
 
 \subsubsection{Class weights}
 \label{sec:class-weights}
-The third way is using class weights\parencite{class-weights}. The basic idea is to \say{put more weight} on less represented classes during training. When backpropagating a training example, the gradient is multiplied by a class weight coefficient. This coefficient is greater than 1 for minor classes and smaller for major classes. This way the, network is influenced more by the minor classes in each step, but because there are more examples from major classes, the influence is balanced in the scope of one epoch.
+The third way is using class weights\parencite{class-weights}. The basic idea is to \say{put more weight} on less represented classes during training. When backpropagating a training example, the gradient is multiplied by a class weight coefficient. This coefficient is greater than 1 for minor classes and smaller for major classes. This way, the network is influenced more by the minor classes in each step, but because there are more examples from major classes, the influence is balanced in the scope of one epoch.
 
 I chose to use this method because of its simplicity (Keras supports it off the shelf) and its adaptability.
 
@@ -1032,7 +1036,7 @@ The equation \ref{eq:class-weights} shows the formula I used for calculating the
 \label{sec:dynamic-class-weights}
 I discovered that modifying the class weights during training can lead to better results. For example, when one class has a much greater class weight because it is badly represented, the model can fixate on this class and is unable to choose a different class.
 
-To fix this, I decided to \say{normalize} the classes a bit (meaning bring them all closer to 1) every epoch. For this, I needed a function which when applied on itself, has limit 1. Example of such a function is the square root function ($\forall x>0: \lim_{n\to\infty} \text{sqrt}^n(x) = 1$). All power functions ($f(x) = x^k; k \in \mathbb{R}$) which satisfy $0 < k < 1$ have this property as well.
+To fix this, I decided to \say{normalize} the classes a bit (meaning bring them all closer to 1) every epoch. For this, I needed a function which, when applied on itself, has limit 1. Example of such a function is the square root function ($\forall x>0: \lim_{n\to\infty} \text{sqrt}^n(x) = 1$). All power functions ($f(x) = x^k; k \in \mathbb{R}$) which satisfy $0 < k < 1$ have this property as well.
 I experimented with the value of the exponent and discovered that normalization function $f(x) = x^{0.7}$ works the best.
 
 Table \ref{tab:class-weights-compare} shows the improvements gained by class weights.
@@ -1042,7 +1046,7 @@ Table \ref{tab:class-weights-compare} shows the improvements gained by class wei
 \label{sec:class-eval-method}
 The datasets are evaluated with two metrics -- accuracy and weighted f1 score (weighted mean of f1 scores of each label).
 
-The models that were evaluated are the Czech ALBERT models (\textit{csbase3}, \textit{cslarge3} and \textit{csbase4}), the multilingual models (\textit{Multilingual BERT} and \textit{Slavic BERT}) and a \textit{dummy} model. 
+The models that were evaluated are the Czech ALBERT models (\textit{csbase3}, \textit{cslarge3}, and \textit{csbase4}), the multilingual models (\textit{Multilingual BERT} and \textit{Slavic BERT}) and a \textit{dummy} model. 
 
 The \textit{dummy} model is the simplest model possible, which always predicts the prevalent class. It provides a baseline for the results.
 
@@ -1084,18 +1088,18 @@ Table \ref{tab:novinky-results} shows the comparison of evaluated models.
 
 Because the dataset is well-balanced, the weighted f1 score of real models is very similar to the accuracy.
 
-The \textit{fasttext} \parencite{fasttext} model is presented for comparison as a shallow model. It is much faster but performs worse and the size of the resulting classifier is comparable to the size of the Czech ALBERT models.
+The \textit{fasttext} \parencite{fasttext} model is presented for comparison as a shallow model. It is much faster but performs worse, and the size of the resulting classifier is comparable to the size of the Czech ALBERT models.
 
-We can see that from the Czech ALBERT models, \textit{csbase4} was the most successful. That is understandable because \textit{csbase4} is the biggest of them. However fine-tuning of \textit{csbase4} took almost three times as long as for the \textit{csbase3} whose accuracy is not too far behind.
+We can see that from the Czech ALBERT models, \textit{csbase4} was the most successful. That is understandable because \textit{csbase4} is the biggest of them. However, fine-tuning of \textit{csbase4} took almost three times as long as for the \textit{csbase3} whose accuracy is not too far behind.
 
 Because the article descriptions almost always fit into the 256 tokens, \textit{cslarge3} had no significant advantage over \textit{csbase3}.
 
 We can also see that the \textit{noinit} Czech ALBERT models and Slavic BERT perform significantly worse than the pretrained variants. 
-From the fact that \textit{noinit Slavic BERT} is worse than the pretrained \textit{csbase3} and the gap between \textit{noinit} accuracy and pretrained accuracy is similar in both models we could infer that with better pretraining the Czech ALBERT models would be more accurate.
+From the fact that \textit{noinit Slavic BERT} is worse than the pretrained \textit{csbase3} and the gap between \textit{noinit} accuracy and pretrained accuracy is similar in both models, we could infer that with better pretraining, the Czech ALBERT models would be more accurate.
 
 Both \textit{Multilingual BERT} models perform worse than the pretrained Czech ALBERT models. This is probably because of the lower vocabulary coverage (see Table \ref{tab:vocab-nov-compare}). The \textit{Slavic BERT}, which has better coverage but the same parameters, performs a lot better. This shows that with inadequate vocabulary and tokenization, not even the strength of this big model can save it. 
 
-A weird phenomenon arises with the \textit{Multilingual BERT} where the \textit{noinit} variant achieves better accuracy than the pretrained one. One explanation might be that the novinky.cz task is highly dependent on specialized use of vocabulary and the general knowledge from pretraining is not useful. The pretrained weights might define different solution space, and it might not be possible to transition to a solution space similar to the \textit{noinit} model solution space using backpropagation. The experiment was repeated multiple times, and these results are consistent. 
+A weird phenomenon arises with the \textit{Multilingual BERT}, where the \textit{noinit} variant achieves better accuracy than the pretrained one. One explanation might be that the novinky.cz task is highly dependent on specialized use of vocabulary and the general knowledge from pretraining is not useful. The pretrained weights might define different solution space, and it might not be possible to transition to a solution space similar to the \textit{noinit} model solution space using backpropagation. The experiment was repeated multiple times, and these results are consistent. 
 
 
 \subsubsection{Propaganda}
@@ -1148,15 +1152,15 @@ The multilingual models usually achieve the best performance, even better than t
 
 The \textit{noinit} models perform worse. Once again, most of the pretrained Czech ALBERT models are better than the \textit{noinit Mul. BERT} model. There is also a big gap between \textit{noinit Mul. BERT} and \textit{Mul. BERT}.
 
-On most of the tasks, the performance of \textit{noinit cslarge3} and \textit{noinit BERT} are very similar, which suggests that with better pretraining the \textit{cslarge3} model would achieve higher accuracy. It also probably seems that model width is most important for these tasks because the narrower Czech ALBERT models performed worse. This makes sense because the key phrases/sentences that determine the article's class are sometimes further in the text, and the wider models have better chance to contain them in the input.
+On most of the tasks, the performance of \textit{noinit cslarge3} and \textit{noinit BERT} are very similar, which suggests that with better pretraining the \textit{cslarge3} model would achieve higher accuracy. It also probably seems that model width is most important for these tasks because the narrower Czech ALBERT models performed worse. This makes sense because the key phrases/sentences that determine the article's class are sometimes further in the text, and the wider models have a better chance to contain them in the input.
 
 \vspace{1em}
 {\parindent=0cm
-The effect of class weights on fine-tuning with unbalanced dataset is shown in Table \ref{tab:class-weights-compare}. 
+The effect of class weights on fine-tuning with an unbalanced dataset is shown in Table \ref{tab:class-weights-compare}. 
 }
 
-Three experiments were conducted, one without class weights, one with static class weights and one with dynamic class weights   
-The dynamic class weights were normalized in each epoch as described in \ref{sec:dynamic-class-weights}.
+Three experiments were conducted, one without class weights, one with static class weights, and one with dynamic class weights.
+The dynamic class weights were normalized in each epoch, as described in \ref{sec:dynamic-class-weights}.
 
 We can see that \textit{static class weights} decrease accuracy but improve the f1 score and weighted accuracy. The \textit{dynamic class weights}  keep the increased f1 and weighted accuracy of the \textit{static class weights} and improve the accuracy as well.
 
@@ -1191,13 +1195,13 @@ We can see that \textit{static class weights} decrease accuracy but improve the 
 \clearpage
 
 \section{Question answering}
-Question answering (QA) is a reading comprehension NLP task, where the goal is to find an answer to a question in some related context. One of the most famous QA datasets is the English SQuAD (Stanford Question Answering Dataset, \parencite{squad}). SQuAD consists of 500+ Wikipedia articles and more than 150\,000 questions. At the time English ALBERT was released, it achieved the best performance on SQuAD \parencite[Table 10]{albert}, \parencite{squad}. Currently (since April 6th, 2020), the best model also in part uses the ALBERT architecture \parencite{squad}.
+Question answering (QA) is a reading comprehension NLP task, where the goal is to find an answer to a question in some related context. One of the most famous QA datasets is the English SQuAD (Stanford Question Answering Dataset, \parencite{squad}). SQuAD consists of 500+ Wikipedia articles and more than 150\,000 questions. At the time English ALBERT was released, it achieved the best performance on SQuAD \parencite[Table 10]{albert}, \parencite{squad}. Currently (since April 6th, 2020), the best model also, in part, uses the ALBERT architecture \parencite{squad}.
 
 
 \subsection{Czech SQAD dataset}
 The biggest Czech QA dataset is called SQAD (Simple Question Answering Database) and was released by Radoslav Sabol et al. at the NLP Center of Masaryk University \parencite{sqad}. Its newest version (v3) contains more than 13 000 questions.
 
-However, SQAD is quite different from its English counterpart. The main difference is that Czech SQAD primarily focuses on the answer selection task (the whole sentence is selected) and not answer extraction task (only the relevant word/phrase is selected). Because of this, the questions are not tied to a specific paragraph as in SQuAD but to whole article, which is much longer. Also, the question density differs significantly. SQuAD usually has at least 5 questions per paragraph and most of SQAD has only 1 question per article.
+However, SQAD is quite different from its English counterpart. The main difference is that Czech SQAD primarily focuses on the answer selection task (the whole sentence is selected) and not answer extraction task (only the relevant word/phrase is selected). Because of this, the questions are not tied to a specific paragraph, as in SQuAD, but to the whole article, which is much longer. Also, the question density differs significantly. SQuAD usually has at least 5 questions per paragraph, and most of SQAD has only 1 question per article.
 
 The architecture of ALBERT is more suitable for the answer extraction task because the whole article cannot fit into the model at once.
 
@@ -1229,7 +1233,7 @@ Table \ref{tab:vocab-sqad-compare} shows the vocabulary coverage of *BERT models
 \subsection{Model architecture}
 \label{sec:qaarch}
 
-This section describes only high-level concepts, for implementation details see Section \ref{sec:adapting-finetuning}.
+This section describes only high-level concepts; for implementation details, see Section \ref{sec:adapting-finetuning}.
 
 \subsubsection{Model input}
 The \textit{question} and \textit{context} are tokenized using SentencePiece\footnote{See Section~\ref{sec:sentencepiece}.} and compound into a single sequence in the following way:
@@ -1274,7 +1278,7 @@ Each task is evaluated on two metrics: match@k and coverage@k. \textit{k} is the
 Coverage on a single example is calculated as the length of the longest common sequence of characters between answer and prediction divided by the maximum of answer and prediction lengths. \textit{coverage@5} is the mean of coverages by the best prediction in the first 5 predictions.
 
 
-The models were trained for 20 epochs and similarly as in text classification, the best model on the test set was chosen. The train/test split used was 0.9/0.1. 
+The models were trained for 20 epochs, and similarly, as in text classification, the best model on the test set was chosen. The train/test split used was 0.9/0.1. 
 
 
 \subsection{Results}
@@ -1332,9 +1336,9 @@ Table \ref{tab:sqad-results} shows the evaluation results on the Czech SQAD.
     The state-of-the-art (SOA) results are from two different papers.
 }
 
-Answer sentence selection is from Sabol, Medveď and Horák 2019 \parencite[Table 3]{sqad}. They share only the number for the match metric, but because their model can only select whole sentences, the coverage figures are the same. This paper does not share the results for answer extraction.
+Answer sentence selection is from Sabol, Medveď and Horák 2019 \parencite[Table 3]{sqad}. They share only the number for the \textit{match} metric, but because their model can only select whole sentences, the \textit{coverage} figures are the same. This paper does not share the results for answer extraction.
 
-Answer extraction figures are from Medveď and Horák 2018 \parencite[Table 1 a)]{sqadv1}. This paper is older and summarizes results from SQAD~v1.1. They share only the exact match and partial match metrics. I used the exact match as match@1 and exact $\text{match} + 0.5 \cdot \text{partial match}$  as coverage@1 (assuming that partial match has, on average, 50\% coverage, the original partial coverage is 0.08).  
+Answer extraction figures are from Medveď, and Horák 2018 \parencite[Table 1 a)]{sqadv1}. This paper is older and summarizes results from SQAD~v1.1. They share only the exact match and partial match metrics. I used the exact match as match@1 and exact $\text{match} + 0.5 \cdot \text{partial match}$  as coverage@1 (assuming that partial match has, on average, 50\% coverage, the original partial coverage is 0.08).  
 
 
 The Multilingual BERT outperforms all models if we take only the first answer. It is much better in answer extraction than the SOA model\footnote{However, the SOA models for the answer extraction task were trained only on SQAD v1.1}.
@@ -1350,7 +1354,7 @@ The BERT/ALBERT architecture is probably most suitable for the answer extraction
 
 Because of insufficient processing power and framework restrictions, I had to compromise with model sizes and the length of pretraining. Despite that, even the small Czech ALBERT models show a lot of potential, and on the classification tasks often achieved state-of-the-art accuracy.
 
-However, they are still overshadowed by the multilingual BERT models, which almost always had the best performance. On the other hand, the Czech ALBERT models are around 10$\times$ faster to fine-tune, and require only a GPU with 6 GB of memory which is much cheaper than the 16 GB GPUs that are required for the BERT models.
+However, they are still overshadowed by the multilingual BERT models, which almost always had the best performance. On the other hand, the Czech ALBERT models are around 10$\times$ faster to fine-tune and require only a GPU with 6 GB of memory, which is much cheaper than the 16 GB GPUs that are required for the BERT models.
 
 Even though fine-tuning on CPUs is a possibility, it is 10$\times$ slower than on the small GPU (AMD Ryzen 7 3700X 8/16 cores/threads, 3.6~GHz vs. GTX 1060 6GB). However, CPUs do not have the problem with insufficient memory because RAM is much cheaper and more expandable than GPU memory.
 
@@ -1374,7 +1378,7 @@ The third major improvement TensorFlow 2 brings is mixed precision\footnote{\url
 
 This thesis explored the process of pretraining and evaluation of a new language model called ALBERT for the Czech language. The first chapter focuses on the most common approaches for applying deep artificial neural networks to NLP tasks. The second chapter describes more sophisticated language models used in NLP, including ALBERT and models that lead to it. The third chapter describes the process of training Czech ALBERT models. The fourth chapter contains the evaluation of Czech ALBERT models and comparison with current state-of-the-art models as well as a description of the evaluation tasks.
 
-The Czech ALBERT models were able to achieve state-of-the-art performance for text classification tasks. They were however not good enough for question answering, probably because of their small size and insufficient pretraining.
+The Czech ALBERT models were able to achieve state-of-the-art performance for text classification tasks. They were however, not good enough for question answering, probably because of their small size and insufficient pretraining.
 
 The pretrained Czech models are 8\,--\,12$\times$ faster (although worse-performing) alternative to the large multilingual models like Multilingual or Slavic BERT. They can be easily fine-tuned for a variety of down-stream NLP tasks. The pretrained models can be downloaded from \url{https://nlp.fi.muni.cz/projekty/czech_albert/}, and the repository \url{https://github.com/zepzep/csalbert} contains examples of their use.
 
