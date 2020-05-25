@@ -49,6 +49,27 @@
     abstract = "In recent years word-embedding models have gained great popularity due to their remarkable performance on several tasks, including word analogy questions and caption generation. An unexpected {``}side-effect{''} of such models is that their vectors often exhibit compositionality, i.e., \textit{adding}two word-vectors results in a vector that is only a small angle away from the vector of a word representing the semantic composite of the original words, e.g., {``}man{''} + {``}royal{''} = {``}king{''}. This work provides a theoretical justification for the presence of additive compositionality in word vectors learned using the Skip-Gram model. In particular, it shows that additive compositionality holds in an even stricter sense (small distance rather than small angle) under certain assumptions on the process generating the corpus. As a corollary, it explains the success of vector calculus in solving word analogies. When these assumptions do not hold, this work describes the correct non-linear composition operator. Finally, this work establishes a connection between the Skip-Gram model and the Sufficient Dimensionality Reduction (SDR) framework of Globerson and Tishby: the parameters of SDR models can be obtained from those of Skip-Gram models simply by adding information on symbol frequencies. This shows that Skip-Gram embeddings are optimal in the sense of Globerson and Tishby and, further, implies that the heuristics commonly used to approximately fit Skip-Gram models can be used to fit SDR models.",
 }
 
+@article{lstm,
+author = {Hochreiter, Sepp and Schmidhuber, Jürgen},
+year = {1997},
+month = {12},
+pages = {1735-80},
+title = {Long Short-term Memory},
+volume = {9},
+journal = {Neural computation},
+doi = {10.1162/neco.1997.9.8.1735},
+url = {https://www.bioinf.jku.at/publications/older/2604.pdf}
+}
+
+@article{lstm-info,
+  title={Understanding LSTM--a tutorial into Long Short-Term Memory Recurrent Neural Networks},
+  author={Staudemeyer, Ralf C and Morris, Eric Rothstein},
+  journal={arXiv preprint arXiv:1909.09586},
+  year={2019},
+  url={https://arxiv.org/pdf/1909.09586.pdf}
+}
+
+
 @article{elmo,
   author    = {Matthew E. Peters and
                Mark Neumann and
@@ -67,6 +88,13 @@
   timestamp = {Mon, 13 Aug 2018 16:48:54 +0200},
   biburl    = {https://dblp.org/rec/journals/corr/abs-1802-05365.bib},
   bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{gpt,
+  title={Improving language understanding with unsupervised learning},
+  author={Radford, Alec and Narasimhan, Karthik and Salimans, Time and Sutskever, Ilya},
+  journal={Technical report, OpenAI},
+  year={2018}
 }
 
 @article{attentionisall,
@@ -109,10 +137,218 @@
 }
 
 @article{albert,
-  title={Albert: A lite bert for self-supervised learning of language representations},
+  title={ALBERT: A lite BERT for self-supervised learning of language representations},
   author={Lan, Zhenzhong and Chen, Mingda and Goodman, Sebastian and Gimpel, Kevin and Sharma, Piyush and Soricut, Radu},
   journal={arXiv preprint arXiv:1909.11942},
-  year={2019}
+  year={2019},
+  url={https://arxiv.org/pdf/1909.11942.pdf}
+}
+
+
+@article{batch-size,
+  author    = {Christopher J. Shallue and
+               Jaehoon Lee and
+               Joseph M. Antognini and
+               Jascha Sohl{-}Dickstein and
+               Roy Frostig and
+               George E. Dahl},
+  title     = {Measuring the Effects of Data Parallelism on Neural Network Training},
+  journal   = {CoRR},
+  volume    = {abs/1811.03600},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1811.03600},
+  archivePrefix = {arXiv},
+  eprint    = {1811.03600},
+  timestamp = {Fri, 23 Nov 2018 12:43:51 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1811-03600.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@inproceedings{transfer1,
+    title = "Supervised Learning of Universal Sentence Representations from Natural Language Inference Data",
+    author = {Conneau, Alexis  and
+      Kiela, Douwe  and
+      Schwenk, Holger  and
+      Barrault, Loïc  and
+      Bordes, Antoine},
+    booktitle = "Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2017",
+    address = "Copenhagen, Denmark",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/D17-1070",
+    doi = "10.18653/v1/D17-1070",
+    pages = "670--680",
+    abstract = "Many modern NLP systems rely on word embeddings, previously trained in an unsupervised manner on large corpora, as base features. Efforts to obtain embeddings for larger chunks of text, such as sentences, have however not been so successful. Several attempts at learning unsupervised representations of sentences have not reached satisfactory enough performance to be widely adopted. In this paper, we show how universal sentence representations trained using the supervised data of the Stanford Natural Language Inference datasets can consistently outperform unsupervised methods like SkipThought vectors on a wide range of transfer tasks. Much like how computer vision uses ImageNet to obtain features, which can then be transferred to other tasks, our work tends to indicate the suitability of natural language inference for transfer learning to other NLP tasks. Our encoder is publicly available.",
+}
+
+@article{transfer2,
+  author    = {Bryan McCann and
+               James Bradbury and
+               Caiming Xiong and
+               Richard Socher},
+  title     = {Learned in Translation: Contextualized Word Vectors},
+  journal   = {CoRR},
+  volume    = {abs/1708.00107},
+  year      = {2017},
+  url       = {http://arxiv.org/abs/1708.00107},
+  archivePrefix = {arXiv},
+  eprint    = {1708.00107},
+  timestamp = {Thu, 21 Mar 2019 11:19:44 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1708-00107.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{google-translation,
+  author    = {Yonghui Wu and
+               Mike Schuster and
+               Zhifeng Chen and
+               Quoc V. Le and
+               Mohammad Norouzi and
+               Wolfgang Macherey and
+               Maxim Krikun and
+               Yuan Cao and
+               Qin Gao and
+               Klaus Macherey and
+               Jeff Klingner and
+               Apurva Shah and
+               Melvin Johnson and
+               Xiaobing Liu and
+               Lukasz Kaiser and
+               Stephan Gouws and
+               Yoshikiyo Kato and
+               Taku Kudo and
+               Hideto Kazawa and
+               Keith Stevens and
+               George Kurian and
+               Nishant Patil and
+               Wei Wang and
+               Cliff Young and
+               Jason Smith and
+               Jason Riesa and
+               Alex Rudnick and
+               Oriol Vinyals and
+               Greg Corrado and
+               Macduff Hughes and
+               Jeffrey Dean},
+  title     = {Google's Neural Machine Translation System: Bridging the Gap between
+               Human and Machine Translation},
+  journal   = {CoRR},
+  volume    = {abs/1609.08144},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1609.08144},
+  archivePrefix = {arXiv},
+  eprint    = {1609.08144},
+  timestamp = {Thu, 14 Mar 2019 09:34:18 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/WuSCLNMKCGMKSJL16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@article{uni-trans,
+  author    = {Mostafa Dehghani and
+               Stephan Gouws and
+               Oriol Vinyals and
+               Jakob Uszkoreit and
+               Lukasz Kaiser},
+  title     = {Universal Transformers},
+  journal   = {CoRR},
+  volume    = {abs/1807.03819},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1807.03819},
+  archivePrefix = {arXiv},
+  eprint    = {1807.03819},
+  timestamp = {Mon, 13 Aug 2018 16:49:11 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1807-03819.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{sentencepiece,
+  author    = {Taku Kudo and
+               John Richardson},
+  title     = {SentencePiece: {A} simple and language independent subword tokenizer
+               and detokenizer for Neural Text Processing},
+  journal   = {CoRR},
+  volume    = {abs/1808.06226},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1808.06226},
+  archivePrefix = {arXiv},
+  eprint    = {1808.06226},
+  timestamp = {Sun, 02 Sep 2018 15:01:56 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1808-06226.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{unbalanced,
+  title={Neural learning from unbalanced data},
+  author={Murphey, Yi L and Guo, Hong and Feldkamp, Lee A},
+  journal={Applied Intelligence},
+  volume={21},
+  number={2},
+  pages={117--128},
+  year={2004},
+  publisher={Springer},
+  url={https://sci2s.ugr.es/keel/pdf/specific/articulo/NL-Unbalanced-data.pdf}
+}
+
+
+@inproceedings{race,
+    title = "{RACE}: Large-scale {R}e{A}ding Comprehension Dataset From Examinations",
+    author = "Lai, Guokun  and
+      Xie, Qizhe  and
+      Liu, Hanxiao  and
+      Yang, Yiming  and
+      Hovy, Eduard",
+    booktitle = "Proceedings of the 2017 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2017",
+    address = "Copenhagen, Denmark",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/D17-1082",
+    doi = "10.18653/v1/D17-1082",
+    pages = "785--794",
+    abstract = "We present RACE, a new dataset for benchmark evaluation of methods in the reading comprehension task. Collected from the English exams for middle and high school Chinese students in the age range between 12 to 18, RACE consists of near 28,000 passages and near 100,000 questions generated by human experts (English instructors), and covers a variety of topics which are carefully designed for evaluating the students{'} ability in understanding and reasoning. In particular, the proportion of questions that requires reasoning is much larger in RACE than that in other benchmark datasets for reading comprehension, and there is a significant gap between the performance of the state-of-the-art models (43{\%}) and the ceiling human performance (95{\%}). We hope this new dataset can serve as a valuable resource for research and evaluation in machine comprehension. The dataset is freely available at \url{http://www.cs.cmu.edu/~glai1/data/race/}and the code is available at \url{https://github.com/qizhex/RACE_AR_baselines}.",
+}
+
+@article{class-weights,
+  author    = {Jonathon Byrd and
+               Zachary C. Lipton},
+  title     = {Weighted Risk Minimization {\&} Deep Learning},
+  journal   = {CoRR},
+  volume    = {abs/1812.03372},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1812.03372},
+  archivePrefix = {arXiv},
+  eprint    = {1812.03372},
+  timestamp = {Tue, 01 Jan 2019 15:01:25 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1812-03372.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{fasttext,
+  author    = {Armand Joulin and
+               Edouard Grave and
+               Piotr Bojanowski and
+               Tomas Mikolov},
+  title     = {Bag of Tricks for Efficient Text Classification},
+  journal   = {CoRR},
+  volume    = {abs/1607.01759},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1607.01759},
+  archivePrefix = {arXiv},
+  eprint    = {1607.01759},
+  timestamp = {Mon, 13 Aug 2018 16:48:12 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/JoulinGBM16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@ONLINE{glue,
+  publisher = {New York University, University of Washington, DeepMind},
+  title     = {The General Language Understanding Evaluation (GLUE) benchmark},
+  url       = {https://gluebenchmark.com/},
+  langid    = {english},
+  urldate = {2020-05-07}
 }
 
 @inproceedings{propaganda,
@@ -120,46 +356,208 @@
   author={Baisa, V{\'i}t and Herman, Ond{\v{r}}ej and Horak, Ales},
   booktitle={Proceedings of the International Conference on Recent Advances in Natural Language Processing (RANLP 2019)},
   pages={77--83},
-  year={2019}
+  year={2019},
+  url={https://www.aclweb.org/anthology/R19-1010.pdf}
 }
+
+
+@inproceedings{sqad,
+  title={Czech Question Answering with Extended SQAD v3.0 Benchmark Dataset},
+  author={Sabol, Radoslav and Medved, Marek and Hor{\'a}k, Ales},
+  booktitle={RASLAN},
+  pages={99--108},
+  year={2019},
+  url={https://nlp.fi.muni.cz/raslan/2019/paper14-medved.pdf}
+}
+
+@inproceedings{sqadv1,
+   author = {Medveď, Marek and Horák, Aleš},
+   address = {Setúbal, Portugal},
+   booktitle = {Proceedings of the 10th International Conference on Agents and Artificial Intelligence (ICAART 2018)},
+   keywords = {question answering; word embedding; word2vec; AQA; Simple Question Answering Database; SQAD},
+   language = {eng},
+   location = {Setúbal, Portugal},
+   isbn = {978-989-758-275-2},
+   pages = {486-492},
+   publisher = {SCITEPRESS - Science and Technology Publications},
+   title = {Sentence and Word Embedding Employed in Open Question-Answering},
+   year = {2018},
+   url = {https://www.scitepress.org/Papers/2018/65959/65959.pdf}
+}
+
 
 @inproceedings{sqad1,
   title={SQAD: Simple Question Answering Database.},
   author={Medved, Marek and Hor{\'a}k, Ales},
   booktitle={RASLAN},
   pages={121--128},
-  year={2014}
+  year={2014},
+  url={https://pdfs.semanticscholar.org/2898/799d4a77ae114f198f19f763c853c8b39e05.pdf}
 }
 
 @article{sqad2,
   title={Enlargement of the Czech Question-Answering Dataset to SQAD v2.0},
   author={{\v{S}}ulganov{\'a}, Ter{\'e}zia and Medve{\v{d}}, Marek and Hor{\'a}k, Ale{\v{s}}},
   year={2017},
-  publisher={Tribun EU}
+  publisher={Tribun EU},
+  url={https://nlp.fi.muni.cz/raslan/2017/paper12-Sulganova_Medved_Horak.pdf}
+}
+
+@inproceedings{tenten1,
+  title={csTenTen17, a Recent Czech Web Corpus},
+  author={V{\'i}t Suchomel},
+  booktitle={RASLAN 2018},
+  year={2018},
+  publisher={Tribun EU},
+  url={https://nlp.fi.muni.cz/raslan/2018/paper10-Suchomel.pdf}
+}
+
+@inproceedings{tenten2,
+  title={Recent Czech Web Corpora},
+  author={Vit Suchomel},
+  booktitle={RASLAN 2012},
+  publisher={Tribun EU},
+  year={2012},
+  url={https://nlp.fi.muni.cz/raslan/2012/paper11.pdf}
+}
+
+@article{parallel,
+ title = {GNU Parallel - The Command-Line Power Tool},
+ author = {O. Tange},
+ address = {Frederiksberg, Denmark},
+ journal = {;login: The USENIX Magazine},
+ month = {2},
+ number = {1},
+ volume = {36},
+ url = {http://www.gnu.org/s/parallel},
+ year = {2011},
+ pages = {42-47}
 }
 
 @ONLINE{albert_repo,
   publisher = {Google Research},
-  title     = {ALBERT: A Lite BERT for Self-supervised Learning of Language Representations},
+  title     = {ALBERT GitHub repository},
   date      = {2019/2020},
   url       = {https://github.com/google-research/ALBERT},
-  urldate   = {2020-03-17},
-  location  = {Brno},
   langid    = {english}
 }
 
 @ONLINE{thesis_repo,
   publisher = {Petr Zelina},
-  title     = {Czech ALBERT},
+  title     = {Czech ALBERT GitHub repository},
   date      = {2019/2020},
   url       = {https://github.com/zepzep/csalbert},
-  urldate   = {2020-03-17},
   location  = {Brno},
   langid    = {english}
 }
 
-@misc{metacentrum,
-	title={MetaCentrum NGI},
-    url={https://www.metacentrum.cz/},
-    journal={MetaCentrum NGI}
+
+@ONLINE{squad,
+  publisher = {The Stanford NLP Group},
+  title     = {The Stanford Question Answering Dataset},
+  url       = {https://rajpurkar.github.io/SQuAD-explorer/},
+  langid    = {english},
+  urldate = {2020-05-07}
+}
+
+@ONLINE{ilustrtran,
+  author    = {Alammar, Jay},
+  title     = {The Illustrated Transformer},
+  date      = {2018},
+  url       = {https://jalammar.github.io/illustrated-transformer/},
+  langid    = {english},
+  urldate = {2020-04-23}
+}
+
+@ONLINE {multibert,
+    publisher = "Google research",
+    title  = "Multilingual BERT",
+    month  = 10,
+    year   = 2018,
+    url    = "https://github.com/google-research/bert/blob/master/multilingual.md#list-of-languages",
+    urldate = {2020-04-02}
+}
+
+@ONLINE {slavicbert,
+    publisher = "Moscow Institute of Physics and Technology",
+    title  = "Slavic BERT",
+    month  = 5,
+    year   = 2019,
+    url    = "https://github.com/deepmipt/Slavic-BERT-NER",
+    urldate = {2020-04-02}
+}
+
+@online{spgit,
+	title={SentencePiece GitHub},
+    url={https://github.com/google/sentencepiece},
+    urldate = {2020-04-02}
+}
+
+@ONLINE{tensorboard,
+  publisher = {TensorFlow},
+  title     = {TensorBoard: TensorFlow's visualization toolkit},
+  url       = {https://www.tensorflow.org/tensorboard},
+  urldate = {2020-05-12}
+}
+
+@misc{tensorflow,
+title={ {TensorFlow}: Large-Scale Machine Learning on Heterogeneous Systems},
+url={https://www.tensorflow.org/},
+note={Software available from tensorflow.org},
+author={
+    Mart\'{\i}n~Abadi and
+    Ashish~Agarwal and
+    Paul~Barham and
+    Eugene~Brevdo and
+    Zhifeng~Chen and
+    Craig~Citro and
+    Greg~S.~Corrado and
+    Andy~Davis and
+    Jeffrey~Dean and
+    Matthieu~Devin and
+    Sanjay~Ghemawat and
+    Ian~Goodfellow and
+    Andrew~Harp and
+    Geoffrey~Irving and
+    Michael~Isard and
+    Yangqing Jia and
+    Rafal~Jozefowicz and
+    Lukasz~Kaiser and
+    Manjunath~Kudlur and
+    Josh~Levenberg and
+    Dandelion~Man\'{e} and
+    Rajat~Monga and
+    Sherry~Moore and
+    Derek~Murray and
+    Chris~Olah and
+    Mike~Schuster and
+    Jonathon~Shlens and
+    Benoit~Steiner and
+    Ilya~Sutskever and
+    Kunal~Talwar and
+    Paul~Tucker and
+    Vincent~Vanhoucke and
+    Vijay~Vasudevan and
+    Fernanda~Vi\'{e}gas and
+    Oriol~Vinyals and
+    Pete~Warden and
+    Martin~Wattenberg and
+    Martin~Wicke and
+    Yuan~Yu and
+    Xiaoqiang~Zheng},
+  year={2015},
+  urldate = {2020-05-12}
+}
+
+@ONLINE{metacentrum,
+  publisher = {CESNET},
+  title     = {MetaCentrum National Grid Infrustructure},
+  url       = {https://www.metacentrum.cz/en/},
+  urldate = {2020-04-13}
+}
+
+@ONLINE{empty,
+  publisher = {},
+  title     = {},
+  url       = {},
 }
